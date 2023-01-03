@@ -1,6 +1,7 @@
 const { build } = require('esbuild');
 const httpImportPlugin = require('./plugins/httpImportPlugin');
 const envPlugin = require('./plugins/envPlugin');
+const htmlPlugin = require('./plugins/htmlPlugin');
 async function runBuild() {
   build({
     absWorkingDir: process.cwd(),
@@ -11,7 +12,7 @@ async function runBuild() {
     splitting: true,
     sourcemap: true,
     metafile: true,
-    plugins: [httpImportPlugin()],
+    plugins: [httpImportPlugin(), htmlPlugin()],
   }).then(() => {
     console.log('🚀 Build Finished!');
   });
